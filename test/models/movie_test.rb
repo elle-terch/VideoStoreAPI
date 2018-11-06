@@ -5,7 +5,7 @@ describe Movie do
 
   describe 'validations' do
 
-    it 'is valid when all fields are present' do
+    it 'is valid when a title and inventory number are present' do
 
       @movie = Movie.new(title: 'title', inventory: 3)
       result = @movie.valid?
