@@ -3,16 +3,16 @@ class MoviesController < ApplicationController
   def index
     movies = Movie.all
 
-    render json: jsonify(movies)
+    render json: movies.as_json( only: [:id, :title, :release_date])
 
   end
 
   def create
     movie = Movie.new(movie_params)
     if movie.save
-      render json: { id: movie.id }
-      #else
-      #add error
+      render json: { id: movie.id, title: movie.title }
+    else
+      render_error(:bad_request, movie.errors.messages )
     end
 
   end
@@ -21,10 +21,6 @@ class MoviesController < ApplicationController
 
   def movie_params
     params.require(:movie).permit(:title, :overview, :release_date, :inventory)
-  end
-
-  def jsonify(movie_data)
-    return movie_data.as_json( only: [:id, :title, :release_date])
   end
 
 end
