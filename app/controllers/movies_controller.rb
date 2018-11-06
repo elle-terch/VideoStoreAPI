@@ -20,8 +20,9 @@ class MoviesController < ApplicationController
     movie = Movie.find_by(id: params[:id])
     if movie
       render json: jsonify(movie)
-    # else
-      # render_error(:not_found, { mov})
+    else
+      # binding.pry
+      # render_error(:not_found, { movie_id: ["no such movie found"] } )
     end
   end
 
