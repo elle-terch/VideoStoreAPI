@@ -8,7 +8,6 @@ class CustomersController < ApplicationController
 
 
 
-
   private
 
   def jsonify(customer)
