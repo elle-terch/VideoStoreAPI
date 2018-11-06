@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   def index
     customers = Customer.all
     # render json: jsonify(customers), status: :ok
-    render json: customers.as_json( only: [:id, :name, :registered_at, :postal_code, :phone, :movies_checked_out_count)
+    render json: customers.as_json( only: [:id, :name, :registered_at, :postal_code, :phone, :movies_checked_out_count] )
   end
 
 
