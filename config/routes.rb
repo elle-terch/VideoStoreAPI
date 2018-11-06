@@ -11,6 +11,14 @@ Rails.application.routes.draw do
 
   post '/movies', to: 'movies#create'
 
+  get '/rentals', to: 'rentals#index', as: 'rentals'
+
+  get '/rentals/:id', to: 'rentals#show', as: 'rental'
+
+  post '/rentals/check-out', to: 'rentals#checkout', as: 'checkout'
+
+  post '/rentals/check-in', to: 'rentals#checkin', as: 'checking'
+
 
 
 
