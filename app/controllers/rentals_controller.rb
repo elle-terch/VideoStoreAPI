@@ -23,9 +23,8 @@ class RentalsController < ApplicationController
     rental = Rental.new(rental_params)
     if rental.save
       render json: { id: rental.id }
-      #should we be validating movie & customer ids?
-
-      ###add errors
+    else
+      render_error(:bad_request, rental.errors.messages )
     end
   end
 
@@ -43,7 +42,7 @@ class RentalsController < ApplicationController
   private
 
   def rental_params
-    params.require(:rental).permit(:movie_id, :customer_id )
+    params.require(:rental).permit(:movie_id, :customer_id, :checkout )
   end
 
 end
