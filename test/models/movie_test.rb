@@ -59,4 +59,17 @@ describe Movie do
 
   end
 
+  describe "relations" do
+    it "has a list of rentals" do
+      movie = movies(:dragon)
+      movie.must_respond_to :rentals
+
+      movie.rentals.each do |rental|
+        rental.must_be_kind_of Rental
+      end
+
+    end
+
+  end
+
 end
