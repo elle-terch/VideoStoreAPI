@@ -24,6 +24,7 @@ class RentalsController < ApplicationController
     if rental.save
       render json: { id: rental.id }
     else
+      # Need to return error message here, per Dan request
       render json: {}, status: :bad_request
     end
   end

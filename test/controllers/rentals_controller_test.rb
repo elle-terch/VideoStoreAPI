@@ -63,8 +63,8 @@ describe RentalsController do
 
     let (:rental_params) {
       {
-        movie_id: 3,
-        customer_id: 4,
+        movie_id: Movie.first.id,
+        customer_id: Customer.first.id,
         checkout: "2016-11-11"
       }
     }
@@ -110,6 +110,8 @@ describe RentalsController do
   describe "checkin" do
     it "can successfully update a rental with today's data as the checkin date" do
       rental = Rental.first
+      rental.checkout = "2016-11-11"
+
       # if the checking date is hardcoded like below, it works.  Otherwise, checkin date is nil?!!?
       # rental.checkin = Date.today
 
