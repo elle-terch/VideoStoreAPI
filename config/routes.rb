@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   post '/rentals/check-out', to: 'rentals#checkout', as: 'checkout'
 
-  patch '/rentals/check-in', to: 'rentals#checkin', as: 'checkin'
+  patch '/rentals/:id/check-in', to: 'rentals#checkin', as: 'checkin'
 
 
 

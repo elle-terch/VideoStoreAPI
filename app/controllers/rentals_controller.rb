@@ -30,23 +30,17 @@ class RentalsController < ApplicationController
 
 
   def checkin
-    rental = Rental.find_by(id: params[:id])
+    rental_id = params[:id]
+    rental = Rental.find_by(id: rental_id)
+
     if rental
       rental.update(checkin: Date.today)
+      render json: { id: rental.id }
     else
-      render json: { errors { rental_id: ["No such rental" ] } }
+      render json: { errors: { rental_id: ["No such rental"] } }, status: :bad_request
     end
   end
 
-
-
-  if @book.update(book_params)
-     flash[:success] = "Successfully updated book \"#{@book.title}\""
-     redirect_to book_path(@book.id)
-   else
-     flash.now[:error] = "Invalid book data"
-     render(:edit, status: :bad_request)
-   end
 
 
 
