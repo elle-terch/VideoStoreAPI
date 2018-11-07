@@ -24,7 +24,7 @@ class RentalsController < ApplicationController
     if rental.save
       render json: { id: rental.id }
     else
-      render_error(:bad_request, rental.errors.messages )
+      render json: {}, status: :bad_request
     end
   end
 
@@ -32,10 +32,21 @@ class RentalsController < ApplicationController
   def checkin
     rental = Rental.find_by(id: params[:id])
     if rental
-      rental.c = Date.today
-      ###add errors
+      rental.update(checkin: Date.today)
+    else
+      render json: { errors { rental_id: ["No such rental" ] } }
     end
   end
+
+
+
+  if @book.update(book_params)
+     flash[:success] = "Successfully updated book \"#{@book.title}\""
+     redirect_to book_path(@book.id)
+   else
+     flash.now[:error] = "Invalid book data"
+     render(:edit, status: :bad_request)
+   end
 
 
 

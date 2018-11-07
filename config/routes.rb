@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post '/movies', to: 'movies#create'
 
 
-  
+
 
   get '/rentals', to: 'rentals#index', as: 'rentals'
 
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   post '/rentals/check-out', to: 'rentals#checkout', as: 'checkout'
 
-  post '/rentals/:id/check-in', to: 'rentals#checkin', as: 'checkin'
+  patch '/rentals/check-in', to: 'rentals#checkin', as: 'checkin'
 
 
 
