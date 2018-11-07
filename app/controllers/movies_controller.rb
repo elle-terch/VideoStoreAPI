@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   def index
     movies = Movie.all
 
-    render json: jsonify(movies)
+    render json: movies.as_json( only: [:id, :title, :release_date ])
 
   end
 
@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
       render json: jsonify(movie)
     else
       # binding.pry
-      # render_error(:not_found, { movie_id: ["no such movie found"] } )
+      render_error(:not_found, { id: ["no such movie found"] } )
     end
   end
 
@@ -34,7 +34,7 @@ class MoviesController < ApplicationController
   end
 
   def jsonify(movie_data)
-    return movie_data.as_json( only: [:id, :title, :release_date] )
+    return movie_data.as_json( only: [:title, :overview, :release_date, :inventory] )
   end
 
 end

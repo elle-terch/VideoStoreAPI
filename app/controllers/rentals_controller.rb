@@ -13,6 +13,7 @@ class RentalsController < ApplicationController
     rental = Rental.find_by(id: rental_id)
     if rental
       render json: rental.as_json( except: [:created_at, :updated_at] )
+      ###add errors
     end
   end
 
@@ -22,13 +23,21 @@ class RentalsController < ApplicationController
     if rental.save
       render json: { id: rental.id }
       #should we be validating movie & customer ids?
+
+      ###add errors
     end
   end
 
 
   def checkin
-
+    rental = Rental.find_by(id: params[:id])
+    if rental
+      rental.c = Date.today
+      ###add errors
+    end
   end
+
+
 
   private
 
