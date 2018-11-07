@@ -85,6 +85,25 @@ describe RentalsController do
 
     end
 
+    it "does not check out a movie if data is invalid" do
+
+      rental_data = {
+        rental: {
+          movie_id: Movie.first.id,
+          customer_id: Customer.first.id
+        }
+      }
+
+      Rental.new(rental_data[:rental]).wont_be :valid?, "Book data wasn't invalid. Please come fix this test"
+
+      expect {
+        post(checkout_path, params: rental_data)
+      }.wont_change('Rental.count')
+
+      must_respond_with :bad_request
+
+    end
+
 
   end
 
