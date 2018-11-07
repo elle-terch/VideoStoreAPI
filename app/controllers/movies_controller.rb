@@ -17,12 +17,12 @@ class MoviesController < ApplicationController
   end
 
   def show
-    movie = Movie.find_by(id: params[:id])
+    movie_id = params[:id]
+    movie = Movie.find_by(id: movie_id)
     if movie
       render json: jsonify(movie)
     else
-      # binding.pry
-      render_error(:not_found, { id: ["no such movie found"] } )
+      render json: { errors: { movie_id: ["No such movie"] } }, status: :not_found
     end
   end
 
