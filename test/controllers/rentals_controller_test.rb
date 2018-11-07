@@ -79,7 +79,6 @@ describe RentalsController do
       expect(body).must_be_kind_of Hash
 
       expect(body).must_include "id"
-
       rental = Rental.find(body["id"].to_i)
 
       must_respond_with :success
@@ -90,6 +89,25 @@ describe RentalsController do
   end
 
   describe "checkin" do
+    it "can successfully update a rental with today's data as the checkin date" do
+      rental = Rental.first
+      # if the checking date is hardcoded like below, it works.  Otherwise, checkin date is nil?!!?
+      # rental.checkin = Date.today
+
+      patch checkin_path(rental)
+      must_respond_with :success
+
+      # binding.pry
+      expect(rental.checkin).must_equal Date.today
+    end
+
+
+    it "responds with bad_request if no rental is found" do
+      rental = Rental.last
+      patch checkin_path(rental.id + 1)
+      must_respond_with :bad_request
+    end
+
   end
 
 end
