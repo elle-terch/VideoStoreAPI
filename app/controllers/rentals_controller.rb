@@ -13,7 +13,8 @@ class RentalsController < ApplicationController
     rental = Rental.find_by(id: rental_id)
     if rental
       render json: rental.as_json( except: [:created_at, :updated_at] )
-      ###add errors
+    else
+      render json: { errors: { rental_id: ["No such rental"] } }, status: :not_found
     end
   end
 
