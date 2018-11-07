@@ -6,8 +6,9 @@ describe Rental do
   describe 'validations' do
 
     it 'is valid when a checkout date is present' do
-
-      @rental = Rental.new(checkout: "2000-01-18")
+      movie = movies(:dragon)
+      customer = customers(:harry)
+      @rental = Rental.new(checkout: "2018-01-18", movie_id: movie.id, customer_id: customer.id)
       result = @rental.valid?
 
       expect(result).must_equal true
@@ -16,8 +17,9 @@ describe Rental do
 
 
     it 'is invalid without a checkout date' do
-
-      @rental = Rental.new
+      movie = movies(:dragon)
+      customer = customers(:harry)
+      @rental = Rental.new(movie_id: movie.id, customer_id: customer.id)
       result = @rental.valid?
 
       expect(result).must_equal false
