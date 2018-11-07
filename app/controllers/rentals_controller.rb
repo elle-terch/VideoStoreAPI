@@ -37,11 +37,11 @@ class RentalsController < ApplicationController
       rental.update(checkin: Date.today)
       render json: { id: rental.id }
     else
-
       render json: { errors: { rental_id: ["No such rental"] } }, status: :bad_request
-
     end
   end
+
+
 
 
   private
