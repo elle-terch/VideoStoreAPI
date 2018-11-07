@@ -60,6 +60,7 @@ describe Movie do
   end
 
   describe "relations" do
+    
     it "has a list of rentals" do
       movie = movies(:dragon)
       movie.must_respond_to :rentals
