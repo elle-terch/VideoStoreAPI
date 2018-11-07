@@ -37,13 +37,20 @@ class RentalsController < ApplicationController
       rental.update(checkin: Date.today)
       render json: { id: rental.id }
     else
+<<<<<<< HEAD
       render json: { errors: { rental_id: ["No such rental"] } }, status: :bad_request
+=======
+      # render json: { errors { rental_id: ["No such rental" ] } }
+>>>>>>> 777a5810abc7dbfa0c50678a6d41eec9663149fa
     end
   end
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 777a5810abc7dbfa0c50678a6d41eec9663149fa
   private
 
   def rental_params
