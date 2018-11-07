@@ -3,19 +3,29 @@ class MoviesController < ApplicationController
   def index
     movies = Movie.all
 
-    render json: jsonify(movies)
+    render json: movies.as_json( only: [:id, :title, :release_date ])
 
   end
 
   def create
     movie = Movie.new(movie_params)
     if movie.save
-      render json: { id: movie.id }
-      #else
-      #add error
+      render json: { id: movie.id, title: movie.title }
+    else
+      render_error(:bad_request, movie.errors.messages )
     end
-
   end
+
+  def show
+    movie = Movie.find_by(id: params[:id])
+    if movie
+      render json: jsonify(movie)
+    else
+      # binding.pry
+      render_error(:not_found, { id: ["no such movie found"] } )
+    end
+  end
+
 
   private
 
@@ -24,7 +34,7 @@ class MoviesController < ApplicationController
   end
 
   def jsonify(movie_data)
-    return movie_data.as_json( only: [:id, :title, :release_date])
+    return movie_data.as_json( only: [:title, :overview, :release_date, :inventory] )
   end
 
 end
