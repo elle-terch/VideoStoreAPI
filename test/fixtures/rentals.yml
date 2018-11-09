@@ -7,7 +7,9 @@
 one:
   movie: dragon
   customer: harry
+  checkout: "2001-11-11"
 
 two:
   movie: drama
   customer: sally
+  checkout: "2001-11-11"
