@@ -24,7 +24,7 @@ class RentalsController < ApplicationController
     if rental.save
       render json: { id: rental.id }, status: :ok
     else
-      render json: {}, status: :bad_request
+      render json: { errors: { rental: ["No such rental"] } }, status: :bad_request
     end
   end
 
@@ -35,7 +35,7 @@ class RentalsController < ApplicationController
 
     if rental
       rental.update(checkin: Date.today)
-      render json: { id: rental.id }
+      render json: { id: rental.id }, status: :ok
     else
       render json: { errors: { rental_id: ["No such rental"] } }, status: :bad_request
     end
