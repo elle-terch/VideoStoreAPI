@@ -2,7 +2,6 @@ class CustomersController < ApplicationController
 
   def index
     customers = Customer.all
-    # render json: jsonify(customers), status: :ok
     render json: jsonify(customers)
   end
 

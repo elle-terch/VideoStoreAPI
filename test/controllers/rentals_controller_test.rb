@@ -118,7 +118,6 @@ describe RentalsController do
       patch checkin_path(rental.id)
       must_respond_with :success
 
-      # binding.pry
       expect(rental.checkin).must_equal Date.today
     end
 
