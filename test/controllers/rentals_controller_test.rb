@@ -108,9 +108,9 @@ describe RentalsController do
   end
 
   describe "checkin" do
-    it "can successfully update a rental with today's data as the checkin date" do
-      rental = Rental.first
-      rental.checkout = "2016-11-11"
+    it "can successfully update a rental with today's date as the checkin date" do
+      rental = rentals(:one)
+      # rental.checkout = "2016-11-11"
 
       # if the checking date is hardcoded like below, it works.  Otherwise, checkin date is nil?!!?
       # rental.checkin = Date.today

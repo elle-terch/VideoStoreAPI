@@ -21,11 +21,13 @@ class RentalsController < ApplicationController
 
   def checkout
     rental = Rental.new(rental_params)
+    rental_id = rental.id
     if rental.save
       render json: { id: rental.id }
     else
       # Need to return error message here, per Dan request
-      render json: {}, status: :bad_request
+      # render json: {}, status: :bad_request
+      render json: { errors: { rental_id: ["No such rental"] } }, status: :bad_request
     end
   end
 
@@ -33,7 +35,7 @@ class RentalsController < ApplicationController
   def checkin
     rental_id = params[:id]
     rental = Rental.find_by(id: rental_id)
-
+    # binding.pry
     if rental
       rental.update(checkin: Date.today)
       render json: { id: rental.id }
